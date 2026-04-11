@@ -13,6 +13,9 @@ public class MailService {
 
     //Maneja todo el envío de correos electrónicos
 
+    @Autowired
+    private JavaMailSender mailSender;
+
     @Value("${app.mail.from}")
     private String from;
 
