@@ -10,6 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class MailService {
+
+    //Maneja todo el envío de correos electrónicos
+
     @Value("${app.mail.from}")
     private String from;
 
