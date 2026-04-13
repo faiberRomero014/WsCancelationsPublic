@@ -4,8 +4,11 @@ import com.app.WsCancelations.utils.Constantes;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
+@Log4j2
 @Service
+public class AccessFailAlertService {
 
     //Envía alertas por correo cuando hay un error de conexión al echivo excel o autenticación con Miva.
 
