@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.ZoneId;
 
 @Service
+
     //Envía alertas por correo cuando hay un error de conexión al echivo excel o autenticación con Miva.
+
+    @Autowired
     private MailService mailService;
 
     private final String EMAIL_NOACCEDIO = Constantes.getEnv("EMAIL_NOACCEDIO");
