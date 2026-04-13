@@ -4,9 +4,18 @@ import com.app.WsCancelations.utils.Constantes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
+@Service
+@RequiredArgsConstructor
+public class OneDriveService {
+
+        //Sube los archivos excel generados  a OneDrive, usando Microsoft Graph API.
 
     private final RestTemplate restTemplate = new RestTemplate();
 
