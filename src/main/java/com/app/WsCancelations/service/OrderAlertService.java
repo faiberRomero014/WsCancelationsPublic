@@ -1,6 +1,11 @@
+import com.app.WsCancelations.utils.Constantes;
 import org.springframework.stereotype.Service;
 @Log4j2
 @Service
+public class OrderAlertService {
+    /*
+    -Órdenes “No Despachar”
+    -Órdenes “Sí y No”
     */
 
     @Autowired
