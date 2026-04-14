@@ -1,9 +1,12 @@
+package com.app.WsCancelations.service;
 import com.app.WsCancelations.utils.Constantes;
 import org.springframework.stereotype.Service;
 @Log4j2
 @Service
 public class OrderAlertService {
     /*
+    Usa MailService para mandar los mensajes y verifica las órdenes y envía alertas específicas por correo dependiendo del caso:
+    -Órdenes “Next Day”
     -Órdenes “No Despachar”
     -Órdenes “Sí y No”
     */
