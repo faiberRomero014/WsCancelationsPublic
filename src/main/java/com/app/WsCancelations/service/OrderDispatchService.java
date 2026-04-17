@@ -8,8 +8,13 @@ public class OrderDispatchService {
 
     private MailService mailService;
 
+
     private final String[] DESTINATARIOS_DESPACHAR = new String[] {"EXAMPLE@EXAMPLE.COM"};
 
+    public void enviarDespacharOrden(String orden, String fechaEntrega, String notas, String nextdayValue) {
+        String subject = "DESPACHAR ORDEN " + orden;
+
+        StringBuilder content = new StringBuilder();
         content.append("DESPACHAR ORDEN ").append(orden).append("\n")
                 .append("Signifyd aprueba segunda revisión de ").append(orden).append(". Por favor despachar.\n")
                 .append("Delivery date: ").append(fechaEntrega != null ? fechaEntrega : "").append("\n");
