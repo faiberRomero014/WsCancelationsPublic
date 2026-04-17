@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderDispatchService {
 
+    //Envía correos cuando una orden debe despacharse.
+
+    @Autowired
     private MailService mailService;
 
 
