@@ -1,26 +1,36 @@
 package com.app.WsCancelations.service;
 
 import com.app.WsCancelations.utils.Constantes;
+import lombok.RequiredArgsConstructor;
 import org.apache.poi.ss.util.AreaReference;
 import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+@Service
 public class OrderService {
 
     //Crea o actualiza el archivo Excel de órdenes en OneDrive. Detecta nuevas órdenes, envía alertas y notificaciones de despacho.
     private final OneDriveService oneDriveService;
     private final OrderAlertService orderAlertService;
     private final OrderDispatchService orderDispatchService;
+
     public void exportOrderToOneDrive(List<OrdenMiva> ordenes) throws Exception {
+        String filename = Constantes.FILENAMEWSC;
         XSSFWorkbook workbook;
+        XSSFSheet sheet;
         int currentRow;
 
         Set<String> existingOrderIds = new HashSet<>();
+        List<String[]> ordenesParaDespachar = new ArrayList<>();
         List<String[]> alertasPendientes = new ArrayList<>();
 
+        if (oneDriveService.fileExists(filename)) {
             try (ByteArrayInputStream existingFile = oneDriveService.downloadFile(filename)) {
                 workbook = new XSSFWorkbook(existingFile);
                 sheet = workbook.getSheet("Hoja1");
@@ -29,6 +39,8 @@ public class OrderService {
                     createHeader(sheet, currentRow++);
                     int lastRow = sheet.getLastRowNum();
                     for (int r = 1; r <= lastRow; r++) {
+                        Row row = sheet.getRow(r);
+                        if (row != null && row.getCell(1) != null) {
                             String idOrden = formatter.formatCellValue(row.getCell(1));
                             existingOrderIds.add(idOrden);
                         }
